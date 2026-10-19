@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Boxes,
   Code2,
@@ -11,30 +11,47 @@ import {
   ShieldCheck,
   Smartphone,
   Webhook,
-  Wrench,
+  Workflow,
 } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 
-const SERVICES = [
+const PROCESS_STEPS = [
   {
-    name: "Desenvolvimento Fullstack",
-    description: "Do contrato da API à interface — uma entrega coerente ponta a ponta.",
+    step: "01",
+    title: "1. Mapeamento e Regras de Negócio",
+    description:
+      "Antes de escrever qualquer linha de código, mergulho na operação da sua empresa. Identifico gargalos, fluxos manuais e defino a lógica exata que o software precisará automatizar.",
+    icon: Workflow,
+    colSpan: "col-span-1 md:col-span-2",
+    accent: "from-violet-500/20 to-blue-500/10",
+  },
+  {
+    step: "02",
+    title: "2. Arquitetura da Solução",
+    description:
+      "Desenho a estrutura ideal de banco de dados e integrações para garantir que o sistema seja rápido, seguro e pronto para crescer junto com o negócio.",
+    icon: Layers,
+    colSpan: "col-span-1",
+    accent: "from-blue-500/20 to-cyan-500/10",
+  },
+  {
+    step: "03",
+    title: "3. Desenvolvimento e Automação",
+    description:
+      "Construção robusta utilizando as melhores stacks de mercado (Laravel, React Native, Next.js). Do back-end invisível à interface na palma da mão do seu cliente.",
     icon: Code2,
+    colSpan: "col-span-1",
+    accent: "from-cyan-500/20 to-violet-500/10",
   },
   {
-    name: "Sustentação de Sistemas",
-    description: "Estabilidade em produção, monitoramento e evolução contínua.",
+    step: "04",
+    title: "4. Implantação e Sustentação",
+    description:
+      "Sistemas críticos não podem parar. Realizo o deploy, monitoramento contínuo e refatoração inteligente para garantir estabilidade, segurança e zero interrupções na sua operação, seja qual for o seu nicho de mercado.",
     icon: ShieldCheck,
-  },
-  {
-    name: "Refatoração de Legado",
-    description: "Modernização de código e banco sem interromper a operação.",
-    icon: Wrench,
-  },
-  {
-    name: "Desenvolvimento Mobile",
-    description: "Aplicativos nativos com fluxos claros para o dia a dia do usuário.",
-    icon: Smartphone,
+    colSpan: "col-span-1 md:col-span-2",
+    accent: "from-emerald-500/20 to-teal-500/10",
   },
 ] as const;
 
@@ -49,58 +66,43 @@ const TECH_TAGS = [
   { name: "APIs RESTful", icon: Webhook },
 ] as const;
 
-function ServiceCard({
-  service,
+function BentoProcessCard({
+  item,
   index,
 }: {
-  service: (typeof SERVICES)[number];
+  item: (typeof PROCESS_STEPS)[number];
   index: number;
 }) {
-  const Icon = service.icon;
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
-    const { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-  }
+  const Icon = item.icon;
 
   return (
-    <Reveal delay={index * 110}>
-      <motion.article
-        onMouseMove={handleMouseMove}
-        whileHover={{ y: -6 }}
-        transition={{ type: "spring", stiffness: 350, damping: 25 }}
-        className="group relative h-full overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.02] p-6 backdrop-blur-md transition-all duration-500 hover:border-violet-400/40 hover:shadow-[0_0_40px_rgba(139,92,246,0.2)]"
+    <Reveal delay={index * 90} className={item.colSpan}>
+      <SpotlightCard
+        className="h-full p-8 hover:border-violet-400/40 hover:shadow-[0_0_40px_rgba(139,92,246,0.18)]"
+        spotlightColor="rgba(139, 92, 246, 0.16)"
       >
-        {/* Mouse Spotlight Glow */}
-        <motion.div
-          className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{
-            background: useMotionTemplate`
-              radial-gradient(
-                320px circle at ${mouseX}px ${mouseY}px,
-                rgba(139, 92, 246, 0.18),
-                transparent 80%
-              )
-            `,
-          }}
-          aria-hidden="true"
-        />
+        <div className="flex h-full flex-col justify-between">
+          <div>
+            <div className="mb-6 flex items-center justify-between">
+              <div
+                className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${item.accent} text-violet-300 ring-1 ring-white/10 backdrop-blur-sm transition duration-500 group-hover:scale-110`}
+              >
+                <Icon className="h-6 w-6" />
+              </div>
+              <span className="font-mono text-xs font-semibold tracking-wider text-zinc-500 transition-colors duration-300 group-hover:text-violet-400">
+                FASE {item.step}
+              </span>
+            </div>
 
-        <div className="relative z-10">
-          <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-600/30 to-blue-600/20 text-violet-300 ring-1 ring-white/10 backdrop-blur-sm transition duration-500 group-hover:scale-105 group-hover:bg-violet-600/40">
-            <Icon className="h-5 w-5" />
+            <h3 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
+              {item.title}
+            </h3>
+            <p className="mt-3 text-sm leading-relaxed text-zinc-400 sm:text-[15px]">
+              {item.description}
+            </p>
           </div>
-          <h3 className="text-[17px] font-semibold leading-snug text-white">
-            {service.name}
-          </h3>
-          <p className="mt-2 text-sm leading-relaxed text-zinc-400">
-            {service.description}
-          </p>
         </div>
-      </motion.article>
+      </SpotlightCard>
     </Reveal>
   );
 }
@@ -111,15 +113,6 @@ export function Skills() {
       id="sobre"
       className="relative mx-auto max-w-6xl scroll-mt-24 px-5 py-24 sm:px-8 sm:py-32 lg:py-36"
     >
-      {/* Elegant Section Divider */}
-      <motion.div
-        className="h-[1px] w-full max-w-xl mx-auto bg-gradient-to-r from-transparent via-white/15 to-transparent mb-16 md:mb-24"
-        initial={{ opacity: 0, scale: 0.5 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      />
-
       {/* Ambient Atmospheric Glows */}
       <div
         className="pointer-events-none absolute -left-32 top-1/4 -z-10 h-[480px] w-[480px] rounded-full bg-blue-600/10 blur-[130px] mix-blend-screen"
@@ -144,19 +137,20 @@ export function Skills() {
         </p>
       </Reveal>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {SERVICES.map((service, index) => (
-          <ServiceCard key={service.name} service={service} index={index} />
+      {/* Bento Grid Layout (2-1 / 1-2 alternating columns) */}
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        {PROCESS_STEPS.map((step, index) => (
+          <BentoProcessCard key={step.step} item={step} index={index} />
         ))}
       </div>
 
-      <Reveal delay={180} className="mt-8 flex flex-wrap gap-3">
+      <Reveal delay={180} className="mt-10 flex flex-wrap gap-3">
         {TECH_TAGS.map(({ name, icon: Icon }) => (
           <motion.span
             key={name}
             whileHover={{ scale: 1.05, y: -2 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.02] backdrop-blur-md px-4 py-2.5 text-sm text-zinc-200 transition-colors duration-300 hover:border-violet-400/40 hover:bg-violet-500/10 hover:text-white"
+            className="inline-flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.02] backdrop-blur-md px-4 py-2 text-xs sm:text-sm text-zinc-300 transition-colors duration-300 hover:border-violet-400/40 hover:bg-violet-500/10 hover:text-white"
           >
             <Icon className="h-4 w-4 text-violet-400" />
             {name}

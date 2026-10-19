@@ -24,6 +24,8 @@ export interface ProjectThemeClasses {
   categoryText: string;
   badgeHover: string;
   dotBg: string;
+  businessTag: string;
+  spotlightColor: string;
 }
 
 export const PROJECT_THEMES: Record<ThemeColorKey, ProjectThemeClasses> = {
@@ -34,6 +36,8 @@ export const PROJECT_THEMES: Record<ThemeColorKey, ProjectThemeClasses> = {
     badgeHover:
       "group-hover:border-amber-500/30 group-hover:bg-amber-500/10 group-hover:text-amber-200",
     dotBg: "bg-amber-400",
+    businessTag: "border-amber-500/30 text-amber-300 bg-amber-500/10",
+    spotlightColor: "rgba(245, 158, 11, 0.16)",
   },
   "violet-500": {
     cardBorderHover: "group-hover:border-violet-500/50",
@@ -42,6 +46,8 @@ export const PROJECT_THEMES: Record<ThemeColorKey, ProjectThemeClasses> = {
     badgeHover:
       "group-hover:border-violet-500/30 group-hover:bg-violet-500/10 group-hover:text-violet-200",
     dotBg: "bg-violet-400",
+    businessTag: "border-violet-500/30 text-violet-300 bg-violet-500/10",
+    spotlightColor: "rgba(139, 92, 246, 0.16)",
   },
   "teal-500": {
     cardBorderHover: "group-hover:border-teal-500/50",
@@ -50,6 +56,8 @@ export const PROJECT_THEMES: Record<ThemeColorKey, ProjectThemeClasses> = {
     badgeHover:
       "group-hover:border-teal-500/30 group-hover:bg-teal-500/10 group-hover:text-teal-200",
     dotBg: "bg-teal-400",
+    businessTag: "border-teal-500/30 text-teal-300 bg-teal-500/10",
+    spotlightColor: "rgba(20, 184, 166, 0.16)",
   },
 } as const;
 
@@ -58,6 +66,7 @@ export interface Project {
   title: string;
   category: string;
   description: string;
+  businessTags: readonly string[];
   tags: readonly string[];
   videoUrl: string;
   themeColor: ThemeColorKey;
@@ -70,6 +79,7 @@ export const PROJECTS: readonly Project[] = [
     category: "MVP / Sistema SaaS",
     description:
       "Plataforma completa para gestão e operação de barbearias. Arquitetura de regras de negócio, layouts intuitivos e controle de acesso diferenciado para administradores e barbeiros.",
+    businessTags: ["Gestão Operacional", "Controle Financeiro"],
     tags: ["Laravel", "React Native", "SQL"],
     videoUrl: "/barberflow.mp4",
     themeColor: "amber-500",
@@ -80,6 +90,7 @@ export const PROJECTS: readonly Project[] = [
     category: "Marketplace Digital",
     description:
       "Plataforma de transações e vitrine digital conectando múltiplos usuários com fluxo de dados seguro e performance em ecossistemas complexos.",
+    businessTags: ["Marketplace", "Fluxo de Transações"],
     tags: ["Laravel", "React Native", "Integração de APIs"],
     videoUrl: "/starzar.mp4",
     themeColor: "violet-500",
@@ -90,6 +101,7 @@ export const PROJECTS: readonly Project[] = [
     category: "Ferramenta de Produtividade",
     description:
       "Aplicação ágil para organização pessoal com gestão de estado e operações de CRUD em tempo real.",
+    businessTags: ["Eficiência", "Automação de Rotina"],
     tags: ["Laravel", "React Native"],
     videoUrl: "/apexia.mp4",
     themeColor: "teal-500",

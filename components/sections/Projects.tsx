@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Reveal } from "@/components/Reveal";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { PROJECTS, PROJECT_THEMES } from "@/lib/constants";
 
 export function Projects() {
@@ -10,15 +11,6 @@ export function Projects() {
       id="projetos"
       className="relative mx-auto max-w-6xl scroll-mt-24 px-5 py-24 sm:px-8 sm:py-32 lg:py-36"
     >
-      {/* Elegant Section Divider */}
-      <motion.div
-        className="h-[1px] w-full max-w-xl mx-auto bg-gradient-to-r from-transparent via-white/15 to-transparent mb-16 md:mb-24"
-        initial={{ opacity: 0, scale: 0.5 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      />
-
       {/* Ambient Atmospheric Glows */}
       <div
         className="pointer-events-none absolute left-1/2 top-1/3 -z-10 h-[650px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-600/12 blur-[140px] mix-blend-screen"
@@ -36,7 +28,7 @@ export function Projects() {
         <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
           Produtos que saíram do papel
         </h2>
-        <p className="mt-3 max-w-2xl text-zinc-400">
+        <p className="mt-3 max-w-2xl text-zinc-400 leading-relaxed">
           Do MVP à operação real: plataformas com regras de negócio, acesso
           controlado e fluxos pensados para quem usa no dia a dia.
         </p>
@@ -48,10 +40,9 @@ export function Projects() {
 
           return (
             <Reveal key={project.id} delay={index * 120}>
-              <motion.article
-                whileHover={{ y: -6 }}
-                transition={{ type: "spring", stiffness: 350, damping: 25 }}
-                className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-md p-4 transition-all duration-500 hover:bg-white/[0.04] ${theme.cardBorderHover} ${theme.cardShadowHover}`}
+              <SpotlightCard
+                spotlightColor={theme.spotlightColor}
+                className={`flex h-full flex-col p-4 transition-all duration-500 hover:bg-white/[0.04] ${theme.cardBorderHover} ${theme.cardShadowHover}`}
               >
                 {/* Media / Video Preview */}
                 <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/[0.06] bg-black/40">
@@ -91,8 +82,20 @@ export function Projects() {
                     {project.description}
                   </p>
 
-                  {/* Tags / Badges */}
+                  {/* Business Value Badges (Destaque de Negócio) */}
                   <div className="mt-5 flex flex-wrap gap-2">
+                    {project.businessTags.map((tag) => (
+                      <span
+                        key={tag}
+                        className={`inline-flex items-center rounded-lg border px-2.5 py-1 text-xs font-semibold tracking-wide backdrop-blur-sm transition-all duration-300 ${theme.businessTag}`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Technology Stack Tags */}
+                  <div className="mt-2.5 flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
@@ -103,7 +106,7 @@ export function Projects() {
                     ))}
                   </div>
                 </div>
-              </motion.article>
+              </SpotlightCard>
             </Reveal>
           );
         })}

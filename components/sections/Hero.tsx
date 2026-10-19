@@ -3,13 +3,13 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { handleSmoothNavClick } from "@/lib/scroll";
 
 const ARCHITECTURE_ROWS = [
-  { label: "Regras de negócio", value: "Modelagem" },
-  { label: "APIs RESTful", value: "Resilientes" },
-  { label: "Sistemas críticos", value: "Em produção" },
-  { label: "MVPs e SaaS", value: "Do zero à escala" },
+  { label: "Mapeamento de Processos", value: "Automação" },
+  { label: "Sistemas Críticos", value: "Estabilidade 24/7" },
+  { label: "Desenvolvimento de SaaS", value: "Escala Regional" },
 ] as const;
 
 export function Hero() {
@@ -42,52 +42,53 @@ export function Hero() {
         </p>
         <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
           <motion.a
-            href="#projetos"
+            href="#contato"
             onClick={handleSmoothNavClick}
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.96 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
             className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-blue-600 px-6 py-3 text-sm font-medium text-white shadow-[0_0_32px_rgba(139,92,246,0.28)] transition duration-300 hover:brightness-110"
           >
-            Ver Projetos
+            Analisar meu projeto
             <ArrowUpRight className="h-4 w-4" />
           </motion.a>
           <motion.a
-            href="#contato"
+            href="#projetos"
             onClick={handleSmoothNavClick}
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.96 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
             className="inline-flex items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] px-6 py-3 text-sm font-medium text-zinc-100 backdrop-blur-sm transition duration-300 hover:border-violet-400/40 hover:bg-white/[0.06]"
           >
-            Entrar em Contato
+            Ver Projetos
           </motion.a>
         </div>
       </Reveal>
 
       <Reveal delay={160}>
-        <motion.div
+        <SpotlightCard
           whileHover={{ y: -5, boxShadow: "0 10px 40px -10px rgba(139,92,246,0.2)" }}
           transition={{ type: "spring", stiffness: 350, damping: 25 }}
-          className="rounded-3xl border border-white/[0.06] bg-white/[0.02] p-5 shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-md sm:p-6 transition-colors duration-500 hover:border-violet-400/30"
+          spotlightColor="rgba(139, 92, 246, 0.15)"
+          className="p-6 shadow-[0_24px_80px_rgba(0,0,0,0.35)] sm:p-7 hover:border-violet-400/30"
         >
           <p className="mb-5 font-mono text-[11px] uppercase tracking-[0.22em] text-zinc-500">
             Arquitetura → Entrega
           </p>
-          <div className="space-y-3">
+          <div className="space-y-3.5">
             {ARCHITECTURE_ROWS.map((item) => (
               <div
                 key={item.label}
                 className="flex items-center justify-between gap-3 rounded-2xl border border-white/[0.05] bg-white/[0.02] px-4 py-3.5 backdrop-blur-sm transition duration-300 hover:border-violet-400/30 hover:bg-white/[0.04]"
               >
-                <span className="text-sm text-zinc-300">{item.label}</span>
-                <span className="shrink-0 rounded-full bg-violet-500/15 px-2.5 py-1 text-xs text-violet-300">
+                <span className="text-sm font-medium text-zinc-200">{item.label}</span>
+                <span className="shrink-0 rounded-full bg-violet-500/15 px-3 py-1 font-mono text-xs font-medium text-violet-300 border border-violet-500/20">
                   {item.value}
                 </span>
               </div>
             ))}
           </div>
-        </motion.div>
+        </SpotlightCard>
       </Reveal>
     </section>
   );

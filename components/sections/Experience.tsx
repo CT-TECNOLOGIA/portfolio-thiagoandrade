@@ -3,14 +3,17 @@
 import { motion } from "framer-motion";
 import { Briefcase, Compass, Download, FileText } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { SOCIAL } from "@/lib/constants";
 
 function CurriculumBox() {
   return (
-    <motion.div
-      whileHover={{ y: -6 }}
+    <SpotlightCard
+      as="div"
+      whileHover={{ y: -5 }}
       transition={{ type: "spring", stiffness: 350, damping: 25 }}
       className="flex items-center justify-between gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.02] px-4 py-3.5 backdrop-blur-md transition-all duration-300 hover:border-violet-400/35 hover:bg-white/[0.035] hover:shadow-[0_0_30px_rgba(139,92,246,0.15)]"
+      spotlightColor="rgba(139, 92, 246, 0.14)"
     >
       <div className="flex min-w-0 items-center gap-3">
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-500/15 text-violet-300 ring-1 ring-white/10 backdrop-blur-sm">
@@ -32,7 +35,7 @@ function CurriculumBox() {
         Baixar PDF
         <Download className="h-3.5 w-3.5" />
       </motion.a>
-    </motion.div>
+    </SpotlightCard>
   );
 }
 
@@ -42,15 +45,6 @@ export function Experience() {
       id="experiencia"
       className="relative mx-auto max-w-6xl scroll-mt-24 px-5 py-24 sm:px-8 sm:py-32 lg:py-36"
     >
-      {/* Elegant Section Divider */}
-      <motion.div
-        className="h-[1px] w-full max-w-xl mx-auto bg-gradient-to-r from-transparent via-white/15 to-transparent mb-16 md:mb-24"
-        initial={{ opacity: 0, scale: 0.5 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      />
-
       {/* Ambient Atmospheric Glows */}
       <div
         className="pointer-events-none absolute -left-36 top-1/4 -z-10 h-[500px] w-[500px] rounded-full bg-blue-600/12 blur-[140px] mix-blend-screen"
@@ -76,10 +70,10 @@ export function Experience() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <div className="flex flex-col gap-4">
           <Reveal>
-            <motion.article
+            <SpotlightCard
+              spotlightColor="rgba(59, 130, 246, 0.16)"
               whileHover={{ y: -8 }}
-              transition={{ type: "spring", stiffness: 350, damping: 25 }}
-              className="group relative rounded-3xl border border-white/[0.06] bg-white/[0.02] p-7 backdrop-blur-md transition-all duration-500 hover:border-blue-400/40 hover:bg-white/[0.035] hover:shadow-[0_0_40px_rgba(59,130,246,0.18)] sm:p-8"
+              className="p-7 sm:p-8 hover:border-blue-400/40 hover:bg-white/[0.035] hover:shadow-[0_0_40px_rgba(59,130,246,0.18)]"
             >
               <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-500/15 text-blue-300 ring-1 ring-white/10 backdrop-blur-sm transition-transform duration-500 group-hover:scale-105">
                 <Briefcase className="h-5 w-5" />
@@ -88,18 +82,18 @@ export function Experience() {
                 Experiência
               </p>
               <h3 className="mt-3 text-xl font-semibold leading-snug text-white">
-                Desenvolvedor e Analista de Software (PJ) — Setor de Saúde
+                Desenvolvedor e Analista de Software (PJ) — Plataformas Críticas
               </h3>
               <p className="mt-4 text-[15px] leading-relaxed text-zinc-400">
-                Atuei no planejamento arquitetural da versão 2.0 de uma
-                plataforma de saúde, desenhando soluções para sistemas
-                críticos e traduzindo requisitos de negócio em regras de
-                software consistentes, auditáveis e prontas para escala.
-                Também realizei a sustentação de sistemas em produção,
-                garantindo estabilidade e refatoração de sistemas legados
-                para modernização de código e banco de dados.
+                Atuei no planejamento arquitetural de plataformas de alta
+                complexidade, desenhando soluções para sistemas críticos e
+                traduzindo regras de negócio complexas em software
+                consistente, auditável e pronto para escala. Também realizei
+                a sustentação de sistemas em produção, garantindo estabilidade
+                operacional contínua e modernização de código e banco de
+                dados sem paradas não planejadas.
               </p>
-            </motion.article>
+            </SpotlightCard>
           </Reveal>
           <Reveal delay={120}>
             <CurriculumBox />
@@ -107,10 +101,10 @@ export function Experience() {
         </div>
 
         <Reveal delay={180}>
-          <motion.article
+          <SpotlightCard
+            spotlightColor="rgba(139, 92, 246, 0.16)"
             whileHover={{ y: -8 }}
-            transition={{ type: "spring", stiffness: 350, damping: 25 }}
-            className="group relative h-full rounded-3xl border border-white/[0.06] bg-white/[0.02] p-7 backdrop-blur-md transition-all duration-500 hover:border-violet-400/40 hover:bg-white/[0.035] hover:shadow-[0_0_40px_rgba(139,92,246,0.18)] sm:p-8"
+            className="h-full p-7 sm:p-8 hover:border-violet-400/40 hover:bg-white/[0.035] hover:shadow-[0_0_40px_rgba(139,92,246,0.18)]"
           >
             <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-violet-500/15 text-violet-300 ring-1 ring-white/10 backdrop-blur-sm transition-transform duration-500 group-hover:scale-105">
               <Compass className="h-5 w-5" />
@@ -123,11 +117,11 @@ export function Experience() {
             </h3>
             <p className="mt-4 text-[15px] leading-relaxed text-zinc-400">
               O roadmap inclui a criação de soluções SaaS regionais —
-              softwares de gestão hoteleira e turismo, além de sistemas de
-              integração para equipamentos — com foco em produto, operação
-              real e entrega de valor para o mercado.
+              softwares de gestão operacional e automação comercial, além de sistemas de
+              integração de dados — com foco em produto, resolução de gargalos
+              e entrega de valor contínuo para o mercado.
             </p>
-          </motion.article>
+          </SpotlightCard>
         </Reveal>
       </div>
     </section>

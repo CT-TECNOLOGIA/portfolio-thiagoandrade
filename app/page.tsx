@@ -5,6 +5,7 @@ import { Projects } from "@/components/sections/Projects";
 import { Experience } from "@/components/sections/Experience";
 import { Contact } from "@/components/sections/Contact";
 import { Footer } from "@/components/sections/Footer";
+import { GlobalMouseGlow } from "@/components/ui/GlobalMouseGlow";
 
 export default function Home() {
   return (
@@ -17,6 +18,9 @@ export default function Home() {
         <div className="site-bg-orb site-bg-orb-b" />
         <div className="site-bg-orb site-bg-orb-c" />
       </div>
+
+      {/* Brilho sutil contínuo acompanhando o cursor */}
+      <GlobalMouseGlow />
 
       <Header />
 
