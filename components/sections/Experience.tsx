@@ -1,12 +1,19 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { Briefcase, Compass, Download, FileText } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { SOCIAL } from "@/lib/constants";
 
 function CurriculumBox() {
   return (
-    <div className="flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5">
+    <motion.div
+      whileHover={{ y: -6 }}
+      transition={{ type: "spring", stiffness: 350, damping: 25 }}
+      className="flex items-center justify-between gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.02] px-4 py-3.5 backdrop-blur-md transition-all duration-300 hover:border-violet-400/35 hover:bg-white/[0.035] hover:shadow-[0_0_30px_rgba(139,92,246,0.15)]"
+    >
       <div className="flex min-w-0 items-center gap-3">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-500/15 text-violet-300 ring-1 ring-white/10">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-500/15 text-violet-300 ring-1 ring-white/10 backdrop-blur-sm">
           <FileText className="h-4 w-4" />
         </span>
         <div className="min-w-0">
@@ -14,15 +21,18 @@ function CurriculumBox() {
           <p className="truncate text-xs text-zinc-400">Baixe a versão técnica</p>
         </div>
       </div>
-      <a
+      <motion.a
         href={SOCIAL.curriculo}
         download={SOCIAL.curriculoFileName}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ type: "spring", stiffness: 400, damping: 20 }}
         className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-gradient-to-r from-violet-600 to-blue-600 px-3.5 py-2 text-xs font-medium text-white shadow-[0_0_20px_rgba(139,92,246,0.25)] transition duration-300 hover:brightness-110"
       >
         Baixar PDF
         <Download className="h-3.5 w-3.5" />
-      </a>
-    </div>
+      </motion.a>
+    </motion.div>
   );
 }
 
@@ -30,8 +40,27 @@ export function Experience() {
   return (
     <section
       id="experiencia"
-      className="relative mx-auto max-w-6xl scroll-mt-24 px-5 py-20 sm:px-8 sm:py-24"
+      className="relative mx-auto max-w-6xl scroll-mt-24 px-5 py-24 sm:px-8 sm:py-32 lg:py-36"
     >
+      {/* Elegant Section Divider */}
+      <motion.div
+        className="h-[1px] w-full max-w-xl mx-auto bg-gradient-to-r from-transparent via-white/15 to-transparent mb-16 md:mb-24"
+        initial={{ opacity: 0, scale: 0.5 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      />
+
+      {/* Ambient Atmospheric Glows */}
+      <div
+        className="pointer-events-none absolute -left-36 top-1/4 -z-10 h-[500px] w-[500px] rounded-full bg-blue-600/12 blur-[140px] mix-blend-screen"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute -right-28 bottom-10 -z-10 h-[450px] w-[450px] rounded-full bg-indigo-600/10 blur-[130px] mix-blend-screen"
+        aria-hidden="true"
+      />
+
       <Reveal className="mb-10 sm:mb-12">
         <p className="font-mono text-xs uppercase tracking-[0.28em] text-violet-400">
           03 — Experiência
@@ -39,13 +68,20 @@ export function Experience() {
         <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
           Experiência e visão
         </h2>
+        <p className="mt-3 max-w-2xl text-zinc-400 leading-relaxed">
+          Histórico em engenharia de sistemas críticos, sustentação em produção e visão de produto para soluções de alto impacto.
+        </p>
       </Reveal>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <div className="flex flex-col gap-4">
           <Reveal>
-            <article className="rounded-3xl border border-white/10 bg-white/[0.03] p-7 sm:p-8">
-              <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-500/15 text-blue-300 ring-1 ring-white/10">
+            <motion.article
+              whileHover={{ y: -8 }}
+              transition={{ type: "spring", stiffness: 350, damping: 25 }}
+              className="group relative rounded-3xl border border-white/[0.06] bg-white/[0.02] p-7 backdrop-blur-md transition-all duration-500 hover:border-blue-400/40 hover:bg-white/[0.035] hover:shadow-[0_0_40px_rgba(59,130,246,0.18)] sm:p-8"
+            >
+              <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-500/15 text-blue-300 ring-1 ring-white/10 backdrop-blur-sm transition-transform duration-500 group-hover:scale-105">
                 <Briefcase className="h-5 w-5" />
               </div>
               <p className="text-xs font-medium uppercase tracking-[0.18em] text-blue-300">
@@ -63,7 +99,7 @@ export function Experience() {
                 garantindo estabilidade e refatoração de sistemas legados
                 para modernização de código e banco de dados.
               </p>
-            </article>
+            </motion.article>
           </Reveal>
           <Reveal delay={120}>
             <CurriculumBox />
@@ -71,8 +107,12 @@ export function Experience() {
         </div>
 
         <Reveal delay={180}>
-          <article className="h-full rounded-3xl border border-white/10 bg-white/[0.03] p-7 sm:p-8">
-            <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-violet-500/15 text-violet-300 ring-1 ring-white/10">
+          <motion.article
+            whileHover={{ y: -8 }}
+            transition={{ type: "spring", stiffness: 350, damping: 25 }}
+            className="group relative h-full rounded-3xl border border-white/[0.06] bg-white/[0.02] p-7 backdrop-blur-md transition-all duration-500 hover:border-violet-400/40 hover:bg-white/[0.035] hover:shadow-[0_0_40px_rgba(139,92,246,0.18)] sm:p-8"
+          >
+            <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-violet-500/15 text-violet-300 ring-1 ring-white/10 backdrop-blur-sm transition-transform duration-500 group-hover:scale-105">
               <Compass className="h-5 w-5" />
             </div>
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-violet-300">
@@ -87,7 +127,7 @@ export function Experience() {
               integração para equipamentos — com foco em produto, operação
               real e entrega de valor para o mercado.
             </p>
-          </article>
+          </motion.article>
         </Reveal>
       </div>
     </section>

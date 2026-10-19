@@ -52,12 +52,12 @@ body {
   position: absolute;
   inset: -20%;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
   background-size: 72px 72px;
   animation: grid-drift 48s linear infinite;
-  opacity: 0.55;
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black 20%, transparent 85%);
+  opacity: 0.6;
+  mask-image: radial-gradient(ellipse 90% 85% at 50% 50%, black 50%, transparent 98%);
 }
 
 .site-bg-aurora {
@@ -157,105 +157,8 @@ body {
   }
 }
 
-@keyframes float-y {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-7px);
-  }
-}
-
-@keyframes float-y-delayed {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-10px) rotate(-1.5deg);
-  }
-}
-
-@keyframes bar-flow {
-  0%,
-  100% {
-    transform: scaleY(0.55);
-    opacity: 0.7;
-  }
-  50% {
-    transform: scaleY(1);
-    opacity: 1;
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    transform: translateX(-120%);
-  }
-  100% {
-    transform: translateX(120%);
-  }
-}
-
-@keyframes pulse-dot {
-  0%,
-  100% {
-    opacity: 0.45;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.25);
-  }
-}
-
-@keyframes progress-fill {
-  0% {
-    width: 35%;
-  }
-  50% {
-    width: 82%;
-  }
-  100% {
-    width: 35%;
-  }
-}
-
-.dashboard-screen,
-.dashboard-float {
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.7s ease;
-}
-
-.group\/card:hover .dashboard-screen {
-  animation: float-y 3.4s ease-in-out infinite;
-}
-
-.group\/card:hover .dashboard-float-a {
-  animation: float-y-delayed 2.8s ease-in-out infinite;
-  transform: translate(10px, -12px) rotate(-3deg);
-}
-
-.group\/card:hover .dashboard-float-b {
-  animation: float-y 3.2s ease-in-out infinite;
-  transform: translate(-8px, 10px) rotate(2.5deg);
-}
-
-.group\/card:hover .dashboard-bar {
-  animation: bar-flow 1.4s ease-in-out infinite;
-  transform-origin: bottom;
-}
-
-.group\/card:hover .dashboard-shimmer {
-  animation: shimmer 1.6s ease-in-out infinite;
-}
-
-.group\/card:hover .dashboard-dot {
-  animation: pulse-dot 1.2s ease-in-out infinite;
-}
-
-.group\/card:hover .dashboard-progress {
-  animation: progress-fill 2.4s ease-in-out infinite;
+.blend-luminosity {
+  mix-blend-mode: luminosity;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -273,16 +176,6 @@ body {
   .site-bg-orb-a,
   .site-bg-orb-b,
   .site-bg-orb-c {
-    animation: none;
-  }
-
-  .group\/card:hover .dashboard-screen,
-  .group\/card:hover .dashboard-float-a,
-  .group\/card:hover .dashboard-float-b,
-  .group\/card:hover .dashboard-bar,
-  .group\/card:hover .dashboard-shimmer,
-  .group\/card:hover .dashboard-dot,
-  .group\/card:hover .dashboard-progress {
     animation: none;
   }
 }

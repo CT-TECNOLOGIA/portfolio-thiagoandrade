@@ -20,24 +20,11 @@ export default function Home() {
 
       <Header />
 
-      <main id="topo">
-        {/* Hero: mantém o fundo complexo com aurora e orbs */}
+      <main id="topo" className="relative z-10 flex flex-col">
         <Hero />
-
-        {/* Skills: fundo ligeiramente mais claro com bordas sutis */}
-        <div className="relative border-y border-white/5 bg-[#0a0c14]">
-          <Skills />
-        </div>
-
-        {/* Projetos: fundo padrão mais escuro com orbs/grid visíveis */}
+        <Skills />
         <Projects />
-
-        {/* Experiência: alternância com fundo ligeiramente mais claro */}
-        <div className="relative border-y border-white/5 bg-[#0a0c14]">
-          <Experience />
-        </div>
-
-        {/* Contato: fundo padrão mais escuro */}
+        <Experience />
         <Contact />
       </main>
 

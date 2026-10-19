@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState, type MouseEvent } from "react";
-import { ArrowUpRight, Menu, Network, X } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { NAV_ITEMS } from "@/lib/constants";
 import { handleSmoothNavClick } from "@/lib/scroll";
 
@@ -58,45 +59,55 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between px-5 md:grid md:grid-cols-[1fr_auto_1fr] md:px-8">
-        <a
+        <motion.a
           href="#topo"
           onClick={handleNavClick}
-          className="flex items-center gap-2.5 font-semibold tracking-tight"
+          className="group flex items-center gap-2 focus:outline-none"
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ type: "spring", stiffness: 400, damping: 25 }}
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-blue-500 text-white shadow-[0_0_20px_rgba(139,92,246,0.35)]">
-            <Network className="h-4 w-4" />
-          </span>
-          <span className="text-[15px] text-zinc-100">
-            analista<span className="text-violet-400">.dev</span>
-          </span>
-        </a>
+          <motion.div className="flex items-center gap-1.5 text-base sm:text-[17px] font-bold tracking-tight">
+            <span className="font-extrabold text-white tracking-tight">Thiago</span>
+            <span className="font-medium text-zinc-400 transition-colors duration-300 group-hover:text-zinc-200">
+              Andrade
+            </span>
+            <span className="h-1.5 w-1.5 rounded-full bg-violet-400 transition-all duration-300 group-hover:scale-125 group-hover:bg-violet-300 shadow-[0_0_8px_rgba(139,92,246,0.6)]" />
+          </motion.div>
+        </motion.a>
 
         <nav className="hidden items-center gap-1 md:flex">
           {NAV_ITEMS.map((item) => (
-            <a
+            <motion.a
               key={item.href}
               href={item.href}
               onClick={handleNavClick}
-              className={`rounded-full px-4 py-2 text-sm transition-all duration-300 ${
+              whileHover={{ scale: 1.06, y: -1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 450, damping: 22 }}
+              className={`relative rounded-full px-4 py-2 text-sm transition-colors duration-300 ${
                 activeSection === item.href
-                  ? "bg-white/10 text-white"
-                  : "text-zinc-400 hover:bg-white/5 hover:text-zinc-100"
+                  ? "bg-white/10 text-white shadow-[0_0_15px_rgba(255,255,255,0.06)]"
+                  : "text-zinc-400 hover:text-zinc-100"
               }`}
             >
               {item.label}
-            </a>
+            </motion.a>
           ))}
         </nav>
 
         <div className="hidden justify-self-end md:flex">
-          <a
+          <motion.a
             href="#contato"
             onClick={handleNavClick}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400, damping: 20 }}
             className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-violet-600 to-blue-600 px-4 py-2 text-sm font-medium text-white shadow-[0_0_24px_rgba(139,92,246,0.25)] transition duration-300 hover:brightness-110"
           >
             Vamos conversar
             <ArrowUpRight className="h-3.5 w-3.5" />
-          </a>
+          </motion.a>
         </div>
 
         <button

@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Thiago Andrade | Analista e Desenvolvedor",
   description:
-    "Analista e desenvolvedor fullstack. Construo MVPs, modernizo sistemas legados e desenvolvo integrações robustas — da arquitetura à entrega.",
+    "Analista e desenvolvedor fullstack. Construo MVPs, modernizo sistemas legados e desenvolvo integrações — da arquitetura à entrega.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
