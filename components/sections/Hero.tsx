@@ -38,7 +38,7 @@ export function Hero() {
           Como Analista e Desenvolvedor, atuo desde o planejamento da
           arquitetura até a entrega do produto final. Construo MVPs para
           novas ideias, modernizo sistemas legados e desenvolvo integrações
-          robustas para empresas de diversos setores.
+          para empresas de diversos setores.
         </p>
         <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
           <motion.a
