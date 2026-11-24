@@ -1,16 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
-  Boxes,
   Code2,
+  Cpu,
   Database,
-  GitBranch,
   Layers,
   Server,
   ShieldCheck,
-  Smartphone,
-  Webhook,
   Workflow,
 } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
@@ -39,7 +35,7 @@ const PROCESS_STEPS = [
     step: "03",
     title: "3. Desenvolvimento e Automação",
     description:
-      "Construção robusta utilizando as melhores stacks de mercado (Laravel, React Native, Next.js). Do back-end invisível à interface na palma da mão do seu cliente.",
+      "Construção robusta utilizando as melhores stacks corporativas (PHP/Laravel, React, Java/Spring Boot e Next.js). Do back-end transacional à interface ágil e responsiva na mão do usuário.",
     icon: Code2,
     colSpan: "col-span-1",
     accent: "from-cyan-500/20 to-violet-500/10",
@@ -48,22 +44,100 @@ const PROCESS_STEPS = [
     step: "04",
     title: "4. Implantação e Sustentação",
     description:
-      "Sistemas críticos não podem parar. Realizo o deploy, monitoramento contínuo e refatoração inteligente para garantir estabilidade, segurança e zero interrupções na sua operação, seja qual for o seu nicho de mercado.",
+      "Sistemas críticos não podem parar. Realizo o deploy em containers (Docker e Coolify), monitoramento contínuo e refatoração inteligente para garantir estabilidade operacional e alta disponibilidade.",
     icon: ShieldCheck,
     colSpan: "col-span-1 md:col-span-2",
     accent: "from-emerald-500/20 to-teal-500/10",
   },
 ] as const;
 
-const TECH_TAGS = [
-  { name: "Laravel", icon: Server },
-  { name: "PHP", icon: Code2 },
-  { name: "Spring Boot", icon: Boxes },
-  { name: "React Native", icon: Smartphone },
-  { name: "SQL", icon: Database },
-  { name: "Modelagem Relacional", icon: GitBranch },
-  { name: "Arquitetura de Software", icon: Layers },
-  { name: "APIs RESTful", icon: Webhook },
+const SKILL_DOMAINS = [
+  {
+    title: "Back-end",
+    icon: Server,
+    color: "text-violet-400",
+    bgIcon: "bg-violet-500/15",
+    borderGlow: "hover:border-violet-400/40",
+    spotlight: "rgba(139, 92, 246, 0.14)",
+    skills: [
+      "PHP",
+      "Laravel",
+      "Slim Framework",
+      "Java",
+      "Spring Boot",
+      "APIs RESTful",
+      "Laravel Sanctum",
+      "WebSockets",
+      "Filas Assíncronas",
+      "Multi-tenancy",
+      "RBAC",
+      "Segurança OWASP / Anti-IDOR",
+    ],
+  },
+  {
+    title: "Front-end",
+    icon: Code2,
+    color: "text-blue-400",
+    bgIcon: "bg-blue-500/15",
+    borderGlow: "hover:border-blue-400/40",
+    spotlight: "rgba(59, 130, 246, 0.14)",
+    skills: [
+      "React.js",
+      "TypeScript",
+      "JavaScript",
+      "Next.js",
+      "Vite",
+      "Tailwind CSS",
+      "Axios",
+      "Laravel Echo",
+    ],
+  },
+  {
+    title: "Bancos de Dados",
+    icon: Database,
+    color: "text-cyan-400",
+    bgIcon: "bg-cyan-500/15",
+    borderGlow: "hover:border-cyan-400/40",
+    spotlight: "rgba(6, 182, 212, 0.14)",
+    skills: [
+      "SQL Avançado",
+      "PostgreSQL",
+      "MySQL",
+      "Oracle OCI",
+      "Otimização de Queries",
+      "Migração de Dados",
+    ],
+  },
+  {
+    title: "Integrações & IA",
+    icon: Cpu,
+    color: "text-amber-400",
+    bgIcon: "bg-amber-500/15",
+    borderGlow: "hover:border-amber-400/40",
+    spotlight: "rgba(245, 158, 11, 0.14)",
+    skills: [
+      "Gateway Asaas (PIX, Recorrência, Webhooks)",
+      "Google Calendar / Meet OAuth2",
+      "APIs OpenAI & Gemini (RAG e Function Calling)",
+      "WhatsApp Webhooks",
+    ],
+  },
+  {
+    title: "Infraestrutura & Qualidade",
+    icon: ShieldCheck,
+    color: "text-emerald-400",
+    bgIcon: "bg-emerald-500/15",
+    borderGlow: "hover:border-emerald-400/40",
+    spotlight: "rgba(16, 185, 129, 0.14)",
+    skills: [
+      "Docker",
+      "Nginx",
+      "Coolify",
+      "Git & GitHub",
+      "CI/CD",
+      "Scrum & Kanban",
+    ],
+  },
 ] as const;
 
 function BentoProcessCard({
@@ -125,37 +199,70 @@ export function Skills() {
 
       <Reveal className="mb-10 sm:mb-12">
         <p className="font-mono text-xs uppercase tracking-[0.28em] text-violet-400">
-          01 — Sobre e Processo
+          01 — Metodologia & Competências
         </p>
         <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-          Sobre mim e processo
+          Como eu penso e construo software
         </h2>
         <p className="mt-3 max-w-2xl text-zinc-400 leading-relaxed">
-          Não escrevo apenas código. Eu traduzo as regras do seu negócio em
-          plataformas seguras, escaláveis e prontas para o mercado. Meu foco é
-          entender o problema real antes de desenhar a arquitetura da solução.
+          Traduzo regras de negócio complexas em arquiteturas modulares, seguras e de alta
+          disponibilidade. Da análise do problema real à entrega em produção.
         </p>
       </Reveal>
 
       {/* Bento Grid Layout (2-1 / 1-2 alternating columns) */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 mb-12">
         {PROCESS_STEPS.map((step, index) => (
           <BentoProcessCard key={step.step} item={step} index={index} />
         ))}
       </div>
 
-      <Reveal delay={180} className="mt-10 flex flex-wrap gap-3">
-        {TECH_TAGS.map(({ name, icon: Icon }) => (
-          <motion.span
-            key={name}
-            whileHover={{ scale: 1.05, y: -2 }}
-            transition={{ type: "spring", stiffness: 400, damping: 20 }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.02] backdrop-blur-md px-4 py-2 text-xs sm:text-sm text-zinc-300 transition-colors duration-300 hover:border-violet-400/40 hover:bg-violet-500/10 hover:text-white"
-          >
-            <Icon className="h-4 w-4 text-violet-400" />
-            {name}
-          </motion.span>
-        ))}
+      {/* Categorized Skills / Stack Grid */}
+      <Reveal delay={120}>
+        <div className="mb-6">
+          <p className="font-mono text-xs uppercase tracking-[0.28em] text-zinc-400">
+            Stack Técnica & Especialidades
+          </p>
+          <h3 className="mt-2 text-2xl font-semibold tracking-tight text-white">
+            Domínios de Engenharia
+          </h3>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {SKILL_DOMAINS.map((domain) => {
+            const Icon = domain.icon;
+            return (
+              <SpotlightCard
+                key={domain.title}
+                spotlightColor={domain.spotlight}
+                whileHover={{ y: -5 }}
+                className={`p-6 transition-all duration-300 ${domain.borderGlow}`}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <span
+                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${domain.bgIcon} ${domain.color} ring-1 ring-white/10`}
+                  >
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <h4 className="text-base font-semibold text-white">
+                    {domain.title}
+                  </h4>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {domain.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="rounded-lg border border-white/[0.06] bg-white/[0.02] px-2.5 py-1 text-xs text-zinc-300 font-medium transition-colors hover:border-white/20 hover:text-white"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </SpotlightCard>
+            );
+          })}
+        </div>
       </Reveal>
     </section>
   );

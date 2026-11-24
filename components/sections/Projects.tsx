@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { ExternalLink } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { PROJECTS, PROJECT_THEMES } from "@/lib/constants";
@@ -105,6 +105,21 @@ export function Projects() {
                       </span>
                     ))}
                   </div>
+
+                  {/* Production Live Link */}
+                  {project.liveUrl && (
+                    <div className="mt-5 border-t border-white/[0.06] pt-4">
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center gap-1.5 text-xs font-semibold tracking-wide transition-all duration-300 hover:gap-2.5 ${theme.categoryText}`}
+                      >
+                        <span>Acessar em produção</span>
+                        <ExternalLink className="h-3.5 w-3.5" />
+                      </a>
+                    </div>
+                  )}
                 </div>
               </SpotlightCard>
             </Reveal>

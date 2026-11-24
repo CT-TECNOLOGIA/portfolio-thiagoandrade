@@ -26,6 +26,10 @@ export function SpotlightCard({
   as = "article",
   whileHover = { y: -6 },
   transition = { type: "spring", stiffness: 350, damping: 25 },
+  href,
+  target,
+  rel,
+  download,
   ...props
 }: SpotlightCardProps) {
   const mouseX = useMotionValue(0);
@@ -45,24 +49,60 @@ export function SpotlightCard({
     mouseY.set(clientY - top);
   }
 
-  const MotionComponent = (as === "div" ? motion.div : as === "a" ? motion.a : motion.article) as any;
+  const sharedClassName = `group relative overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-md transition-all duration-500 ${className}`;
+
+  const glowElement = (
+    <motion.div
+      className="pointer-events-none absolute -inset-px rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+      style={{ background }}
+      aria-hidden="true"
+    />
+  );
+
+  if (as === "a") {
+    return (
+      <motion.a
+        href={href}
+        target={target}
+        rel={rel}
+        download={download}
+        onMouseMove={handleMouseMove}
+        whileHover={whileHover}
+        transition={transition}
+        className={sharedClassName}
+        {...(props as HTMLMotionProps<"a">)}
+      >
+        {glowElement}
+        {children}
+      </motion.a>
+    );
+  }
+
+  if (as === "div") {
+    return (
+      <motion.div
+        onMouseMove={handleMouseMove}
+        whileHover={whileHover}
+        transition={transition}
+        className={sharedClassName}
+        {...props}
+      >
+        {glowElement}
+        {children}
+      </motion.div>
+    );
+  }
 
   return (
-    <MotionComponent
+    <motion.article
       onMouseMove={handleMouseMove}
       whileHover={whileHover}
       transition={transition}
-      className={`group relative overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-md transition-all duration-500 ${className}`}
-      {...props}
+      className={sharedClassName}
+      {...(props as HTMLMotionProps<"article">)}
     >
-      {/* Mouse Spotlight Radial Glow */}
-      <motion.div
-        className="pointer-events-none absolute -inset-px rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{ background }}
-        aria-hidden="true"
-      />
-
+      {glowElement}
       {children}
-    </MotionComponent>
+    </motion.article>
   );
 }

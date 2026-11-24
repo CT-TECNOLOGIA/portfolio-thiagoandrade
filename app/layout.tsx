@@ -13,9 +13,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Thiago Andrade | Analista e Desenvolvedor",
+  title: "Thiago Andrade | Desenvolvedor Full Stack (PHP, React e Java)",
   description:
-    "Analista e desenvolvedor fullstack. Construo MVPs, modernizo sistemas legados e desenvolvo integrações — da arquitetura à entrega.",
+    "Desenvolvedor Full Stack e Analista de Sistemas focado em PHP (Laravel e Slim), React, TypeScript e Java (Spring Boot), com experiência na modernização de sistemas legados, APIs RESTful, bancos relacionais (Oracle OCI, PostgreSQL e MySQL) e plataformas SaaS multi-tenant em produção.",
+  openGraph: {
+    title: "Thiago Andrade | Desenvolvedor Full Stack (PHP, React e Java)",
+    description:
+      "Desenvolvedor Full Stack e Analista de Sistemas focado em PHP (Laravel e Slim), React, TypeScript e Java (Spring Boot), com experiência na modernização de sistemas legados, APIs RESTful, bancos relacionais (Oracle OCI, PostgreSQL e MySQL) e plataformas SaaS multi-tenant em produção.",
+    locale: "pt_BR",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

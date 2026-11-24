@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# agent & local workflow artifacts
+.agents/
+.agent/
+PROJECT_MAP.md
+project_map.md
+

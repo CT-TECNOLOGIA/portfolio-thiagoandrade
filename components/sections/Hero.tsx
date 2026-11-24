@@ -7,9 +7,9 @@ import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { handleSmoothNavClick } from "@/lib/scroll";
 
 const ARCHITECTURE_ROWS = [
-  { label: "Mapeamento de Processos", value: "Automação" },
-  { label: "Sistemas Críticos", value: "Estabilidade 24/7" },
-  { label: "Desenvolvimento de SaaS", value: "Escala Regional" },
+  { label: "Stack Principal", value: "PHP, React e Java" },
+  { label: "Bancos de Dados", value: "Oracle OCI, Postgres e MySQL" },
+  { label: "Foco de Entrega", value: "Modernização & SaaS" },
 ] as const;
 
 export function Hero() {
@@ -28,17 +28,19 @@ export function Hero() {
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         >
           <span className="h-1.5 w-1.5 rounded-full bg-violet-400" />
-          Analista e Desenvolvedor
+          Desenvolvedor Full Stack
         </motion.div>
         <h1 className="max-w-2xl text-4xl font-semibold leading-[1.15] tracking-tight text-white sm:text-5xl lg:text-[3.15rem]">
-          Transformando lógica de negócios em softwares escaláveis e de alto
-          desempenho.
+          Transformando regras de negócio em plataformas escaláveis e modernizando sistemas legados.
         </h1>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-zinc-400 sm:text-lg">
-          Como Analista e Desenvolvedor, atuo desde o planejamento da
-          arquitetura até a entrega do produto final. Construo MVPs para
-          novas ideias, modernizo sistemas legados e desenvolvo integrações
-          para empresas de diversos setores.
+          Desenvolvedor Full Stack e Analista de Sistemas focado em{" "}
+          <span className="text-zinc-200">PHP (Laravel e Slim)</span>,{" "}
+          <span className="text-zinc-200">React & TypeScript</span> e{" "}
+          <span className="text-zinc-200">Java (Spring Boot)</span>. Experiência sólida na
+          modernização de arquiteturas legadas, APIs RESTful, bancos relacionais de missão
+          crítica (<span className="text-zinc-200">Oracle OCI, PostgreSQL e MySQL</span>) e
+          plataformas SaaS multi-tenant em produção.
         </p>
         <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
           <motion.a
@@ -73,7 +75,7 @@ export function Hero() {
           className="p-6 shadow-[0_24px_80px_rgba(0,0,0,0.35)] sm:p-7 hover:border-violet-400/30"
         >
           <p className="mb-5 font-mono text-[11px] uppercase tracking-[0.22em] text-zinc-500">
-            Arquitetura → Entrega
+            Engenharia → Produção
           </p>
           <div className="space-y-3.5">
             {ARCHITECTURE_ROWS.map((item) => (
